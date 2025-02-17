@@ -1,17 +1,19 @@
 package com.app.hcl.stock_exchange_service.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+//@Getter
+//@Setter
+//@Data
 public class StockExchange {
 
     @Id
@@ -24,15 +26,20 @@ public class StockExchange {
 
     private boolean liveInMarket;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade =CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "stock_exchange_stock",
             joinColumns = @JoinColumn(name = "stock_exchange_id"),
             inverseJoinColumns = @JoinColumn(name = "stock_id"))
     private List<Stock> stocks;
 
+    //Required set--> duplication  happening
+    //change once front End done
+    // private Set<Stock> stocks;
+    //required equals and hashcode
 
-    public Long getId() {
+
+   public Long getId() {
         return id;
     }
 

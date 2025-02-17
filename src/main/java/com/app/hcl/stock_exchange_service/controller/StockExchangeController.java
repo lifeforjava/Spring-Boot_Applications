@@ -21,9 +21,9 @@ public class StockExchangeController {
     private StockService stockService;
 
 
-    @GetMapping("/stock-exchange/{name}")
-    public StockExchange getStockExchange(@PathVariable String name) {
-        Optional<StockExchange> stockExchange = stockExchangeService.getStockExchangeByName(name);
+    @GetMapping("/stock-exchange/{stockExchangeName}")
+    public StockExchange getStockExchange(@PathVariable String stockExchangeName) {
+        Optional<StockExchange> stockExchange = stockExchangeService.getStockExchangeByName(stockExchangeName);
         if (stockExchange.isEmpty()) {
             throw new RuntimeException("Stock Exchange not found");
         }
@@ -42,9 +42,9 @@ public class StockExchangeController {
     }
 
 
-    @PostMapping("/stock-exchange/{name}")
-    public StockExchange addStockToExchange(@PathVariable String name, @RequestBody Stock stock) {
-        Optional<StockExchange> stockExchange = stockExchangeService.getStockExchangeByName(name);
+    @PostMapping("/stock-exchange/{stockExchangeName}")
+    public StockExchange addStockToExchange(@PathVariable String stockExchangeName, @RequestBody Stock stock) {
+        Optional<StockExchange> stockExchange = stockExchangeService.getStockExchangeByName(stockExchangeName);
         if (stockExchange.isEmpty()) {
             throw new RuntimeException("Stock Exchange not found");
         }
